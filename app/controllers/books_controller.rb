@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  #上4つのアクションはそれぞれのアクションを行う前にset_bookアクションを行う。
+  #よって今回は@book = Book.find(params[:id])を4つのアクション内に書く必要がなくなる。
 
   # GET /books
   # GET /books.json
@@ -52,6 +54,7 @@ class BooksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    # 一番上のset_bookで定義しているアクションは下に定義した@book = Book.find(params[:id])を書かなくても良い。(省略できる)
     def set_book
       @book = Book.find(params[:id])
     end
